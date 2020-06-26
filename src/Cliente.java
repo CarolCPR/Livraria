@@ -1,17 +1,17 @@
-import java.util.Objects;
-
 public class Cliente{
 
     private String nome;
     private String email;
     private String CPF;
     private String endereco;
+    private Carrinho carrinho;
 
-    public Cliente(String nome, String email, String CPF, String endereco){
+    public Cliente(String nome, String email, String CPF, String endereco, Carrinho carrinho){
         this.nome = nome;
         this.email = email;
         this.CPF = CPF;
         this.endereco = endereco;
+        this.carrinho = carrinho;
     }
 
     public String getNome() {
@@ -44,6 +44,14 @@ public class Cliente{
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(Carrinho carrinho) {
+        this.carrinho = carrinho;
     }
 
     public String toString() {

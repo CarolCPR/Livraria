@@ -1,15 +1,19 @@
 import java.util.ArrayList;
 
 public class Livraria {
-    public String nome;
-    public String endereco;
+    private String nome;
+    private String endereco;
 
-    ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientes;
 
-    public Livraria(String nome, String endereco, ArrayList<Cliente> clientes){
+    private ArrayList<Estante> estantes;
+
+
+    public Livraria(String nome, String endereco, ArrayList<Cliente> clientes, ArrayList<Estante> estantes){
         this.nome = nome;
         this.endereco = endereco;
         this.clientes = clientes;
+        this.estantes = estantes;
     }
 
     public void setEndereco(String endereco) {
@@ -34,6 +38,14 @@ public class Livraria {
 
     public ArrayList<Cliente> getClientes() {
         return clientes;
+    }
+
+    public ArrayList<Estante> getEstantes() {
+        return estantes;
+    }
+
+    public void setEstantes(ArrayList<Estante> estantes) {
+        this.estantes = estantes;
     }
 
     public String toString() {
