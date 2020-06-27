@@ -1,8 +1,8 @@
 public class Hq extends Livro{
     private String genero; //pode ser herois, infantil, manga, etc
 
-    public Hq(String nome, String autor, Double valor, String genero, Boolean vendido){
-        super(nome, autor, valor, vendido);
+    public Hq(String nome, String autor, Double valor, String genero){
+        super(nome, autor, valor);
         this.genero = genero;
     }
 

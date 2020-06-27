@@ -31,4 +31,7 @@ public class Estante {
                 ", livros=" + livros +
                 '}';
     }
+
+
+    public void pegaLivro(){}
 }

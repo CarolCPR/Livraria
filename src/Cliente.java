@@ -63,7 +63,5 @@ public class Cliente{
                 '}';
     }
 
-    public void comprarLivro(){}
 
-    public void consultaLivro(){}
 }

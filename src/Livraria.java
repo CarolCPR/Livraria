@@ -4,12 +4,12 @@ public class Livraria {
     private String nome;
     private String endereco;
 
-    private ArrayList<Cliente> clientes;
+    private Cliente clientes;
 
     private ArrayList<Estante> estantes;
 
 
-    public Livraria(String nome, String endereco, ArrayList<Cliente> clientes, ArrayList<Estante> estantes){
+    public Livraria(String nome, String endereco, Cliente clientes, ArrayList<Estante> estantes){
         this.nome = nome;
         this.endereco = endereco;
         this.clientes = clientes;
@@ -32,11 +32,11 @@ public class Livraria {
         return nome;
     }
 
-    public void setClientes(ArrayList<Cliente> clientes) {
+    public void setClientes(Cliente clientes) {
         this.clientes = clientes;
     }
 
-    public ArrayList<Cliente> getClientes() {
+    public Cliente getClientes() {
         return clientes;
     }
 
@@ -55,4 +55,9 @@ public class Livraria {
                 ", clientes=" + clientes +
                 '}';
     }
+
+    public void consultaLivro(){}
+
+    public void comprarLivro(){}
+
 }
