@@ -28,6 +28,6 @@ public class Livro {
     }
 
     public String toString(){
-        return "Nome autor:" + getAutor() + "\nTítulo: " + getNome() + "\nValor: R$ " + getValor();
+        return "Nome autor: " + getAutor() + "\nTítulo: " + getNome() + "\nValor: R$ " + getValor();
     }
 }
