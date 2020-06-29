@@ -27,11 +27,7 @@ public class Livro {
         return autor;
     }
 
-    public String toString() {
-        return "Livro{" +
-                "nome='" + nome + '\'' +
-                ", autor='" + autor + '\'' +
-                ", valor=" + valor +
-                '}';
+    public String toString(){
+        return "Nome autor:" + getAutor() + "\nTítulo: " + getNome() + "\nValor: R$ " + getValor();
     }
 }
