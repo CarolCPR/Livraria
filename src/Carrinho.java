@@ -42,11 +42,15 @@ public class Carrinho{
                 ", livros=" + livros + '\'' +
                 '}';
     }
-    public Double calculaValorTot(){
+
+    public void addCarrinho() {
+        new Carrinho(0.0, null, null);
+    }
+    public void calculaValorTot(){
         double soma=0.0;
         for (Livro livro:getLivros())
             soma+=livro.getValor();
-        return soma;
+        valor = soma;
     }
 
     public void addLivros(Livro livro){
@@ -55,6 +59,14 @@ public class Carrinho{
 
     public void removeLivros(Livro livro){
         this.livros.remove(livro);
+    }
+
+    public void addHqs(Hq hq){
+        this.livros.add(hq);
+    }
+
+    public void removeHqs(Hq hq){
+        this.livros.remove(hq);
     }
 
     public void comprarLivro(){

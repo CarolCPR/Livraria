@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Cliente{
 
     private String nome;
@@ -61,6 +63,21 @@ public class Cliente{
                 ", CPF=" + CPF +
                 ", endereco='" + endereco + '\'' +
                 '}';
+    }
+
+    public void addCliente() {
+        new Cliente("carol", "carol@email.com", "55555555255", "rua dos cravos, 321", null);
+        Cliente cliente = new Cliente("", "", "", "", carrinho);
+        Scanner in = new Scanner(System.in);
+        System.out.println("Seu nome:");
+        cliente.setNome(in.nextLine());
+        System.out.println("E-mail:");
+        cliente.setEmail(in.nextLine());
+        System.out.println("CPF:");
+        cliente.setCPF(in.nextLine());
+        System.out.println("Endereço:");
+        cliente.setEndereco(in.nextLine());
+        System.out.println("Olá, " + cliente.getNome() + "!");
     }
 
 

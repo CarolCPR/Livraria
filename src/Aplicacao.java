@@ -4,8 +4,7 @@ public class Aplicacao {
         System.out.println("=          LIVRARIA          =");
         System.out.println("==============================");
 
-        Livraria livraria = new Livraria("Aviaras", "rua dos bobos, 0", null, null); //é saraiva ao contrario
-        livraria.addLivros();
+        Livraria livraria = new Livraria("Aviaras", "rua dos bobos, 0", null, null, null, null); //é saraiva ao contrario
         livraria.inicio();
     }
 }
