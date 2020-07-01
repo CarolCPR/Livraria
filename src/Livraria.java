@@ -100,13 +100,15 @@ public class Livraria {
                     System.out.println("-------------------------");
                     System.out.println("-   Finalizar compra    -");
                     System.out.println("-------------------------");
-                    for (i = 0; i < carrinho.getLivros().size(); i++) {
-                        System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getLivros().get(i).toString());
-
+                    if (carrinho.getLivros().size() != 0){
+                        for (i = 0; i < carrinho.getLivros().size(); i++) {
+                            System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getLivros().get(i).toString());
+                        }
                     }
-                    for (i = 0; i < carrinho.getHqs().size(); i++) {
-                        System.out.println("Hq: " + (i + 1) + "\n" + carrinho.getHqs().get(i).toString());
-
+                    if (carrinho.getHqs().size() != 0){
+                        for (i = 0; i < carrinho.getHqs().size(); i++) {
+                            System.out.println("Hq: " + (i + 1) + "\n" + carrinho.getHqs().get(i).toString());
+                        }
                     }
                     carrinho.calculaValorTot();
                     System.out.println("Valor total a pagar: " + carrinho.getValor());
@@ -294,10 +296,11 @@ public class Livraria {
     public void modoAdmin() {
         int e = 0;
         while(e == 0) {
-            System.out.println("Digite a senha de admin: ");
+            System.out.println("Digite a senha de admin ou digite 0 para sair: ");
             int senha = inInt.nextInt();
             if(senha == 123456)
                 e = -1;
+            if(senha == 0) break;
             else System.out.println("Senha incorreta.");
         }
         e = 0;

@@ -77,6 +77,9 @@ public class Carrinho {
         for (int i = 0; i < getLivros().size(); i++) {
             this.livros.remove(i);
         }
+        for (int i = 0; i < getHqs().size(); i++) {
+            this.hqs.remove(i);
+        }
         System.out.println("Compra finalizada!\n");
     }
 
