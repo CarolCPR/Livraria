@@ -46,10 +46,6 @@ public class Carrinho {
                 '}';
     }
 
-    public Carrinho addCarrinho() {
-        return new Carrinho(0.0, new ArrayList<Livro>(), new ArrayList<Hq>());
-    }
-
     public void calculaValorTot() {
         double soma = 0.0;
         for (Livro livro : getLivros()){

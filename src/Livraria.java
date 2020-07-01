@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Livraria {
-    Scanner in = new Scanner(System.in);
+    Scanner inInt = new Scanner(System.in);
+    Scanner inLine = new Scanner(System.in);
     private String nome;
     private String endereco;
     private Cliente cliente;
@@ -69,7 +70,7 @@ public class Livraria {
     }
 
     public String toString() {
-        return nome + ":\nEndereço: " + endereco + "\nLivros=" + livros + "\nClientes: " + cliente;
+        return "Nome: " + nome + ":\nEndereço: " + endereco + "\nLivros=" + livros + "\nHQs: " + hqs + "\nClientes: " + cliente;
     }
 
     public void menu() {
@@ -81,8 +82,7 @@ public class Livraria {
 
         while (e == 0) {
             printMenu();
-            Scanner in = new Scanner(System.in);
-            int escolha = in.nextInt();
+            int escolha = inInt.nextInt();
             switch (escolha) {
                 case 1:
                     printLivros();
@@ -111,12 +111,9 @@ public class Livraria {
                     carrinho.calculaValorTot();
                     System.out.println("Valor total a pagar: " + carrinho.getValor());
                     System.out.println("Digite 1 para confirmar a comprar e 0 para continuar comprando.");
-                    escolha = in.nextInt();
+                    escolha = inInt.nextInt();
                     if (escolha == 1)
                         carrinho.comprarLivro();
-                    break;
-                case 4:
-                    modoAdmin();
                     break;
                 case 0:
                     e = 1;
@@ -132,7 +129,6 @@ public class Livraria {
         System.out.println("1) Livros");
         System.out.println("2) Especial: Comprar HQs");
         System.out.println("3) Finalizar compra");
-        System.out.println("4) Modo admin");
         System.out.println("0) Voltar");
         //System.out.println("\n 4) ");
     }
@@ -156,7 +152,7 @@ public class Livraria {
             System.out.println("2) Editar carrinho");
             System.out.println("3) Exibir carrinho");
             System.out.println("0) Voltar");
-            int escolha = in.nextInt();
+            int escolha = inInt.nextInt();
             switch (escolha) {
                 case 1:
                     System.out.println("-------------------------");
@@ -164,7 +160,7 @@ public class Livraria {
                     System.out.println("-------------------------");
                     while (true) {
                         System.out.println("Digite o numero do item que você quer adicionar ao carrinho ou digite 0 para sair: ");
-                        escolha = in.nextInt();
+                        escolha = inInt.nextInt();
                         if (escolha == 0)
                             break;
                         if (escolha > 0 && escolha <= hqs.size()) {
@@ -187,7 +183,7 @@ public class Livraria {
                         for ( i = 0; i < carrinho.getHqs().size(); i++)
                             System.out.println("Hqs: " + (i + 1) + "\n" + carrinho.getHqs().get(i).toString());
                         System.out.println("Digite o numero do item que você quer excluir do carrinho ou digite 0 para sair: ");
-                        escolha = in.nextInt();
+                        escolha = inInt.nextInt();
                         if (escolha == 0)
                             break;
                         if (escolha > 0 && escolha <= carrinho.getHqs().size()) {
@@ -218,11 +214,10 @@ public class Livraria {
 
     public void printLivros() {
         int e = 0;
-        int i = 0;
 
         while (e == 0) {
 
-            i = 0;
+            int i = 0;
             System.out.println("---------------------");
             System.out.println("-      Livros:      -");
             System.out.println("---------------------");
@@ -235,7 +230,7 @@ public class Livraria {
             System.out.println("2) Editar carrinho");
             System.out.println("3) Exibir carrinho");
             System.out.println("0) Voltar");
-            int escolha = in.nextInt();
+            int escolha = inInt.nextInt();
             switch (escolha) {
                 case 1:
                     System.out.println("-------------------------");
@@ -243,7 +238,7 @@ public class Livraria {
                     System.out.println("-------------------------");
                     while (true) {
                         System.out.println("Digite o numero do item que você quer adicionar ao carrinho ou digite 0 para sair: ");
-                        escolha = in.nextInt();
+                        escolha = inInt.nextInt();
                         if (escolha == 0)
                             break;
                         if (escolha > 0 && escolha <= livros.size()) {
@@ -266,7 +261,7 @@ public class Livraria {
                         for ( i = 0; i < carrinho.getLivros().size(); i++)
                             System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getLivros().get(i).toString());
                         System.out.println("Digite o numero do item que você quer excluir do carrinho ou digite 0 para sair: ");
-                        escolha = in.nextInt();
+                        escolha = inInt.nextInt();
                         if (escolha == 0)
                             break;
                         if (escolha > 0 && escolha <= carrinho.getLivros().size()) {
@@ -300,7 +295,7 @@ public class Livraria {
         int e = 0;
         while(e == 0) {
             System.out.println("Digite a senha de admin: ");
-            int senha = in.nextInt();
+            int senha = inInt.nextInt();
             if(senha == 123456)
                 e = -1;
             else System.out.println("Senha incorreta.");
@@ -311,7 +306,7 @@ public class Livraria {
             System.out.println("2) Adicionar HQs");
             System.out.println("3) Alterar dados livraria");
             System.out.println("0) Voltar");
-            int escolha = in.nextInt();
+            int escolha = inInt.nextInt();
             switch (escolha) {
                 case 1:
                     addLivros();
@@ -323,9 +318,9 @@ public class Livraria {
                     System.out.println("Dados atuais:");
                     System.out.println(toString());
                     System.out.println("Nome:");
-                    nome = in.nextLine();
+                    nome = inLine.nextLine();
                     System.out.println("Endereço:");
-                    endereco = in.nextLine();
+                    endereco = inLine.nextLine();
                     break;
                 case 0:
                     e = -1;
@@ -348,11 +343,11 @@ public class Livraria {
         System.out.println("-   Adição de livros:   -");
         System.out.println("-------------------------");
         System.out.println("Título: ");
-        String titulo = in.nextLine();
+        String titulo = inLine.nextLine();
         System.out.println("Nome do autor: ");
-        String autor = in.nextLine();
+        String autor = inLine.nextLine();
         System.out.println("Valor: ");
-        Double valor = in.nextDouble();
+        Double valor = inInt.nextDouble();
         livros.add(new Livro(titulo, autor, valor));
     }
 
@@ -361,13 +356,13 @@ public class Livraria {
         System.out.println("-     Adição de HQs:    -");
         System.out.println("-------------------------");
         System.out.println("Título: ");
-        String titulo = in.nextLine();
+        String titulo = inLine.nextLine();
         System.out.println("Nome do autor: ");
-        String autor = in.nextLine();
+        String autor = inLine.nextLine();
         System.out.println("Valor: ");
-        Double valor = in.nextDouble();
+        Double valor = inInt.nextDouble();
         System.out.println("Genero: ");
-        String genero = in.nextLine();
+        String genero = inLine.nextLine();
         hqs.add(new Hq(titulo, autor, valor, genero));
     }
 

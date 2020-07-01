@@ -67,7 +67,7 @@ public class Cliente{
                 '}';
     }
 
-    public Cliente addCliente() {
+    public void addCliente() {
         Cliente cliente = new Cliente("carol", "carol@email.com", "55555555255", "rua dos cravos, 321", null);
 //        Cliente cliente = new Cliente("", "", "", "", carrinho);
 //        Scanner in = new Scanner(System.in);
@@ -80,9 +80,9 @@ public class Cliente{
 //        cliente.setEndereco(in.nextLine());
 //        System.out.println("Endereço:");
         System.out.println("Olá, " + cliente.getNome() + "!");
-
-        return cliente;
     }
+
+
 
 
 }
