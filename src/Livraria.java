@@ -14,10 +14,10 @@ public class Livraria {
     public Livraria(String nome, String endereco, Cliente cliente, ArrayList<Livro> livros, ArrayList<Hq> hqs, Carrinho carrinho) {
         this.nome = nome;
         this.endereco = endereco;
-        this.cliente = cliente;
+        this.cliente = (cliente == null) ? new Cliente() : cliente;
         this.livros = livros;
         this.hqs = hqs;
-        this.carrinho = carrinho;
+        this.carrinho = (carrinho == null) ? new Carrinho(0.0, new ArrayList<>(), new ArrayList<>()) : carrinho;
     }
 
     public void setEndereco(String endereco) {
@@ -73,40 +73,26 @@ public class Livraria {
     }
 
     public void menu() {
-        carrinho.addCarrinho();
+        //carrinho.addCarrinho();
         livrosHqsPadrao();
         this.cliente.setCarrinho(carrinho);
         int e = 0;
+        int i = 0;
+
         while (e == 0) {
             printMenu();
             Scanner in = new Scanner(System.in);
             int escolha = in.nextInt();
             switch (escolha) {
                 case 1:
-                    int i = 0;
-                    System.out.println("---------------------");
-                    System.out.println("-      Livros:      -");
-                    System.out.println("---------------------");
-                    while (i < livros.size()) {
-                        System.out.println("Livro: " + (i + 1) + "\n" + livros.get(i).toString());
-                        i++;
-                    }
-                    printLivros(carrinho);
+                    printLivros();
                     break;
                 case 2:
-                    i = 0;
-                    System.out.println("---------------------");
-                    System.out.println("-        Hqs:       -");
-                    System.out.println("---------------------");
-                    while (i < hqs.size()) {
-                        System.out.println("Hqs: " + (i + 1) + "\n" + hqs.get(i).toString());
-                        i++;
-                    }
-                    printHqs(carrinho);
+                    printHqs();
                     break;
 
                 case 3:
-                    if (carrinho.getLivros().size() == 0 && carrinho.getHqs().size() == 0) {
+                    if (carrinho.getLivros().isEmpty() && carrinho.getHqs().isEmpty()) {
                         System.out.println("Nada no carrinho, continue comprando.");
                         break;
                     }
@@ -151,9 +137,21 @@ public class Livraria {
         //System.out.println("\n 4) ");
     }
 
-    public void printHqs(Carrinho carrinho) {
+    public void printHqs() {
         int e = 0;
+        int i;
+
         while (e == 0) {
+
+            i = 0;
+            System.out.println("---------------------");
+            System.out.println("-        Hqs:       -");
+            System.out.println("---------------------");
+            while (i < hqs.size()) {
+                System.out.println("Hqs: " + (i + 1) + "\n" + hqs.get(i).toString() + "\n");
+                i++;
+            }
+
             System.out.println("1) Adicionar Hqs ao Carrinho");
             System.out.println("2) Editar carrinho");
             System.out.println("3) Exibir carrinho");
@@ -172,45 +170,42 @@ public class Livraria {
                         if (escolha > 0 && escolha <= hqs.size()) {
                             carrinho.addHqs(hqs.get(escolha - 1));
                             hqs.remove(escolha - 1);
+                            break;
                         } else System.out.println("Escolha errada! Veja nossas opções digitando 0 e depois 1");
                     }
                     break;
                 case 2:
-                    if (carrinho.getHqs().size() == 0) {
+                    if (carrinho.getHqs() == null || carrinho.getHqs().isEmpty()) {
                         System.out.println("Nada no carrinho, continue comprando.");
-                        break;
+                        continue;
                     }
                     System.out.println("-------------------------");
                     System.out.println("-    Editar carrinho:   -");
                     System.out.println("-   Digite 0 para sair  -");
                     System.out.println("-------------------------");
                     while (true) {
-                        for (int i = 0; i < carrinho.getHqs().size(); i++)
-                            System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getHqs().get(i).toString());
+                        for ( i = 0; i < carrinho.getHqs().size(); i++)
+                            System.out.println("Hqs: " + (i + 1) + "\n" + carrinho.getHqs().get(i).toString());
                         System.out.println("Digite o numero do item que você quer excluir do carrinho ou digite 0 para sair: ");
                         escolha = in.nextInt();
                         if (escolha == 0)
                             break;
-                        if (carrinho.getHqs().size() == 0) {
-                            System.out.println("Nada no carrinho, continue comprando.");
-                            break;
-                        }
                         if (escolha > 0 && escolha <= carrinho.getHqs().size()) {
-                            hqs.add(hqs.get(escolha - 1));
-                            carrinho.removeHqs(hqs.get(escolha - 1));
+                            hqs.add(carrinho.getHqs().get(escolha - 1));
+                            carrinho.removeHqs(escolha - 1);
                         } else
                             System.out.println("Escolha errada! Veja seu carrinho abaixo:");
                     }
                     break;
                 case 3:
-                    if (carrinho.getHqs().size() == 0) {
+                    if (carrinho.getHqs() == null || carrinho.getHqs().isEmpty()) {
                         System.out.println("Nada no carrinho, continue comprando.");
-                        break;
+                        continue;
                     }
                     System.out.println("-------------------------");
                     System.out.println("-   Itens no carrinho:  -");
                     System.out.println("-------------------------");
-                    for (int i = 0; i < carrinho.getHqs().size(); i++)
+                    for ( i = 0; i < carrinho.getHqs().size(); i++)
                         System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getHqs().get(i).toString());
                 case 0:
                     e = -1;
@@ -221,9 +216,21 @@ public class Livraria {
         }
     }
 
-    public void printLivros(Carrinho carrinho) {
+    public void printLivros() {
         int e = 0;
+        int i = 0;
+
         while (e == 0) {
+
+            i = 0;
+            System.out.println("---------------------");
+            System.out.println("-      Livros:      -");
+            System.out.println("---------------------");
+            while (i < livros.size()) {
+                System.out.println("Livro: " + (i + 1) + "\n" + livros.get(i).toString() + "\n");
+                i++;
+            }
+
             System.out.println("1) Adicionar livros ao Carrinho");
             System.out.println("2) Editar carrinho");
             System.out.println("3) Exibir carrinho");
@@ -242,45 +249,43 @@ public class Livraria {
                         if (escolha > 0 && escolha <= livros.size()) {
                             carrinho.addLivros(livros.get(escolha - 1));
                             livros.remove(escolha - 1);
+                            break;
                         } else System.out.println("Escolha errada! Veja nossas opções digitando 0 e depois 1");
                     }
                     break;
                 case 2:
-                    if (carrinho.getLivros().size() == 0) {
+                    if (carrinho.getLivros() == null || carrinho.getLivros().isEmpty() ) {
                         System.out.println("Nada no carrinho, continue comprando.");
-                        break;
+                        continue;
                     }
                     System.out.println("-------------------------");
                     System.out.println("-    Editar carrinho:   -");
                     System.out.println("-   Digite 0 para sair  -");
                     System.out.println("-------------------------");
                     while (true) {
-                        for (int i = 0; i < carrinho.getLivros().size(); i++)
+                        for ( i = 0; i < carrinho.getLivros().size(); i++)
                             System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getLivros().get(i).toString());
                         System.out.println("Digite o numero do item que você quer excluir do carrinho ou digite 0 para sair: ");
                         escolha = in.nextInt();
                         if (escolha == 0)
                             break;
-                        if (carrinho.getLivros().size() == 0) {
-                            System.out.println("Nada no carrinho, continue comprando.");
-                            break;
-                        }
                         if (escolha > 0 && escolha <= carrinho.getLivros().size()) {
-                            livros.add(livros.get(escolha - 1));
-                            carrinho.removeLivros(livros.get(escolha - 1));
+                            livros.add(carrinho.getLivros().get(escolha - 1));
+                            carrinho.removeLivros(escolha - 1);
+
                         } else
                             System.out.println("Escolha errada! Veja seu carrinho abaixo:");
                     }
                     break;
                 case 3:
-                    if (carrinho.getLivros().size() == 0) {
+                    if (carrinho.getLivros() == null || carrinho.getLivros().isEmpty()) {
                         System.out.println("Nada no carrinho, continue comprando.");
-                        break;
+                        continue;
                     }
                     System.out.println("-------------------------");
                     System.out.println("-   Itens no carrinho:  -");
                     System.out.println("-------------------------");
-                    for (int i = 0; i < carrinho.getLivros().size(); i++)
+                    for ( i = 0; i < carrinho.getLivros().size(); i++)
                         System.out.println("Livro: " + (i + 1) + "\n" + carrinho.getLivros().get(i).toString());
                 case 0:
                     e = -1;
@@ -368,6 +373,7 @@ public class Livraria {
 
     public void inicio() {
         int e = 0;
+
         while (e == 0) {
             Scanner in = new Scanner(System.in);
             System.out.println("Para acessar o menu do Cliente, digite 1");
@@ -376,6 +382,9 @@ public class Livraria {
             int escolha = in.nextInt();
             switch (escolha) {
                 case 1:
+                    carrinho = new Carrinho(0.0, new ArrayList<>(), new ArrayList<>());
+                    hqs = new ArrayList<>();
+                    livros = new ArrayList<>();
                     cliente.addCliente();
                     menu();
                     break;

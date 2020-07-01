@@ -8,6 +8,8 @@ public class Cliente{
     private String endereco;
     private Carrinho carrinho;
 
+    public Cliente(){}
+
     public Cliente(String nome, String email, String CPF, String endereco, Carrinho carrinho){
         this.nome = nome;
         this.email = email;
@@ -65,19 +67,21 @@ public class Cliente{
                 '}';
     }
 
-    public void addCliente() {
-        new Cliente("carol", "carol@email.com", "55555555255", "rua dos cravos, 321", null);
-        Cliente cliente = new Cliente("", "", "", "", carrinho);
-        Scanner in = new Scanner(System.in);
-        System.out.println("Seu nome:");
-        cliente.setNome(in.nextLine());
-        System.out.println("E-mail:");
-        cliente.setEmail(in.nextLine());
-        System.out.println("CPF:");
-        cliente.setCPF(in.nextLine());
-        System.out.println("Endereço:");
-        cliente.setEndereco(in.nextLine());
+    public Cliente addCliente() {
+        Cliente cliente = new Cliente("carol", "carol@email.com", "55555555255", "rua dos cravos, 321", null);
+//        Cliente cliente = new Cliente("", "", "", "", carrinho);
+//        Scanner in = new Scanner(System.in);
+//        System.out.println("Seu nome:");
+//        cliente.setNome(in.nextLine());
+//        System.out.println("E-mail:");
+//        cliente.setEmail(in.nextLine());
+//        System.out.println("CPF:");
+//        cliente.setCPF(in.nextLine());
+//        cliente.setEndereco(in.nextLine());
+//        System.out.println("Endereço:");
         System.out.println("Olá, " + cliente.getNome() + "!");
+
+        return cliente;
     }
 
 

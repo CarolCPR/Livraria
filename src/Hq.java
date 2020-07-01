@@ -15,8 +15,6 @@ public class Hq extends Livro{
     }
 
     public String toString() {
-        return "Hq{" +
-                "genero='" + genero + '\'' +
-                '}';
+        return "genero = " + genero + "\nNome autor: " + getAutor() + "\nTítulo: " + getNome() + "\nValor: R$ " + getValor();
     }
 }
